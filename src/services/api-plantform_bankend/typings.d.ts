@@ -13,6 +13,20 @@ declare namespace API {
     message?: string;
   };
 
+  type BaseResponseInterfaceExampleEntity_ = {
+    code?: number;
+    data?: InterfaceExampleEntity;
+    description?: string;
+    message?: string;
+  };
+
+  type BaseResponseListInterfaceBasicInfoVo_ = {
+    code?: number;
+    data?: InterfaceBasicInfoVo[];
+    description?: string;
+    message?: string;
+  };
+
   type BaseResponseListUserVo_ = {
     code?: number;
     data?: UserVo[];
@@ -66,6 +80,27 @@ declare namespace API {
     current?: number;
     /** pageSize */
     pageSize?: number;
+  };
+
+  type InterfaceBasicInfoVo = {
+    createTime?: string;
+    description?: string;
+    id?: number;
+    isFree?: number;
+    method?: string;
+    name?: string;
+    url?: string;
+    userName?: string;
+  };
+
+  type InterfaceExampleEntity = {
+    callExample?: string;
+    createTime?: string;
+    id?: number;
+    interfaceId?: number;
+    isDelete?: number;
+    returnExample?: string;
+    updateTime?: string;
   };
 
   type LoginParam = {

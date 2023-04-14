@@ -29,6 +29,12 @@ export default [
     component: './Welcome',
   },
   {
+    path: '/test',
+    name: '测试接口展示',
+    icon: 'smile',
+    component: './InterfaceTest',
+  },
+  {
     path: '/admin',
     name: 'admin',
     icon: 'crown',
