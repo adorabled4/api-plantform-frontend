@@ -1,7 +1,8 @@
 import { PageContainer } from '@ant-design/pro-components';
 import { useModel } from '@umijs/max';
-import { Card, theme } from 'antd';
+import { Card, theme,message } from 'antd';
 import React from 'react';
+import {getInterfaceListUsingGET} from "@/services/api-plantform_bankend/interfacekongzhiceng";
 
 /**
  * 每个单独的卡片，为了复用样式抽成了组件
@@ -83,6 +84,21 @@ const InfoCard: React.FC<{
   );
 };
 
+// const params = {
+//   // 填写请求参数
+//   current:1,
+//   pageSize:6
+// };
+// let data[]
+// getInterfaceListUsingGET(params).then((response) => {
+//   // 处理响应数据
+//    data = response.data;
+// }).catch((error:API.BaseResponse) => {
+//   // 处理错误
+//   message.error(error.message)
+// });
+
+
 const Welcome: React.FC = () => {
   const { token } = theme.useToken();
   const { initialState } = useModel('@@initialState');
@@ -136,6 +152,7 @@ const Welcome: React.FC = () => {
               gap: 16,
             }}
           >
+
             <InfoCard
               index={1}
               href="https://umijs.org/docs/introduce/introduce"

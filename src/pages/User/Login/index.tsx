@@ -22,6 +22,8 @@ import React, { useState } from 'react';
 import { flushSync } from 'react-dom';
 import {loginUsingPOST} from "@/services/api-plantform_bankend/yonghuxiangguanjiekou";
 import {cosmiconfig} from "cosmiconfig";
+import {Simulate} from "react-dom/test-utils";
+import error = Simulate.error;
 
 const ActionIcons = () => {
   const langClassName = useEmotionCss(({ token }) => {
@@ -118,13 +120,16 @@ const Login: React.FC = () => {
   const handleSubmit = async (values: API.LoginParam) => {
     try {
       // 登录
-      const msg = await loginUsingPOST({ ...values, type });
+      const msg = await loginUsingPOST({ ...values });
       console.log(msg)
-      if (msg.code == 200) {
+      if (msg.code === 200) {
         const defaultLoginSuccessMessage = intl.formatMessage({
           id: 'pages.login.success',
           defaultMessage: '登录成功！',
         });
+        // 保存token到localStorage
+        let token = msg.data ?? '';
+        localStorage.setItem('accessToken', token);
         message.success(defaultLoginSuccessMessage);
         await fetchUserInfo();
         const urlParams = new URL(window.location.href).searchParams;

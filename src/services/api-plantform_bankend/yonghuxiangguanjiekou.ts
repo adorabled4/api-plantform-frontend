@@ -42,6 +42,14 @@ export async function addUserUsingPOST(body: API.UserVo, options?: { [key: strin
   });
 }
 
+/** 获取当前用户信息 GET /apicore/user/current */
+export async function currentUserUsingGET(options?: { [key: string]: any }) {
+  return request<API.BaseResponseUserVo_>('/apicore/user/current', {
+    method: 'GET',
+    ...(options || {}),
+  });
+}
+
 /** 获取用户列表 GET /apicore/user/list */
 export async function getUserListUsingGET(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
@@ -63,7 +71,6 @@ export async function getUserListUsingGET(
 
 /** 用户登录 POST /apicore/user/login */
 export async function loginUsingPOST(body: API.LoginParam, options?: { [key: string]: any }) {
-  console.log("body : "+body)
   return request<API.BaseResponse>('/apicore/user/login', {
     method: 'POST',
     headers: {
