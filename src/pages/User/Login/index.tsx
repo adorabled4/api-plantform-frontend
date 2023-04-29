@@ -1,5 +1,6 @@
 import Footer from '@/components/Footer';
 import { getFakeCaptcha } from '@/services/ant-design-pro/login';
+import { loginUsingPOST } from '@/services/api-plantform_bankend/yonghuxiangguanjiekou';
 import {
   AlipayCircleOutlined,
   LockOutlined,
@@ -15,15 +16,11 @@ import {
   ProFormText,
 } from '@ant-design/pro-components';
 import { useEmotionCss } from '@ant-design/use-emotion-css';
-import { FormattedMessage, history, SelectLang, useIntl, useModel, Helmet } from '@umijs/max';
+import { FormattedMessage, Helmet, history, SelectLang, useIntl, useModel } from '@umijs/max';
 import { Alert, message, Tabs } from 'antd';
-import Settings from '../../../../config/defaultSettings';
 import React, { useState } from 'react';
 import { flushSync } from 'react-dom';
-import {loginUsingPOST} from "@/services/api-plantform_bankend/yonghuxiangguanjiekou";
-import {cosmiconfig} from "cosmiconfig";
-import {Simulate} from "react-dom/test-utils";
-import error = Simulate.error;
+import Settings from '../../../../config/defaultSettings';
 
 const ActionIcons = () => {
   const langClassName = useEmotionCss(({ token }) => {
@@ -98,7 +95,8 @@ const Login: React.FC = () => {
       height: '100vh',
       overflow: 'auto',
       backgroundImage:
-        "url('https://mdn.alipayobjects.com/yuyan_qk0oxh/afts/img/V-_oS6r-i7wAAAAAAAAAAAAAFl94AQBr')",
+        // "url('https://mdn.alipayobjects.com/yuyan_qk0oxh/afts/img/V-_oS6r-i7wAAAAAAAAAAAAAFl94AQBr')",
+        "url('https://cdn.pixabay.com/photo/2016/04/12/22/35/watercolour-1325656_960_720.jpg')",
       backgroundSize: '100% 100%',
     };
   });
@@ -121,7 +119,7 @@ const Login: React.FC = () => {
     try {
       // 登录
       const msg = await loginUsingPOST({ ...values });
-      console.log(msg)
+      console.log(msg);
       if (msg.code === 200) {
         const defaultLoginSuccessMessage = intl.formatMessage({
           id: 'pages.login.success',
@@ -150,6 +148,52 @@ const Login: React.FC = () => {
   };
   const { status, type: loginType } = userLoginState;
 
+  // 设置背景图片
+  // const styles = {
+  //   backgroundImage: 'url("http://oss.dhx.icu/dhx/StockSnap_FXUKMM5OVS.jpg")',
+  //   backgroundSize: 'cover',
+  //   height: '100vh'
+  // }; style={styles}
+
+  const logo = (
+    <div style={{ display: 'flex', alignItems: 'left' }}>
+      <img
+        src="http://oss.dhx.icu/dhx/image-20230429160829057-removebg-preview-16827558960873.png"
+        alt="logo"
+        style={{ width: '120px', height: '60px', marginRight: '20px' }}
+      />
+    </div>
+  );
+  const title = (
+    <span
+      style={{
+        fontSize: '24px',
+        fontWeight: 'bold',
+        marginLeft: '50px',
+        background: '-webkit-linear-gradient(left, #FF00FF, #8A2BE2)', // 设置渐变
+        WebkitBackgroundClip: 'text', // 设置文本填充为渐变色
+        WebkitTextFillColor: 'transparent', // 设置字体颜色为透明，以显示渐变背景色
+      }}
+    >
+      登录
+      <br />
+    </span>
+  );
+  const subTitle = (
+    <span
+      style={{
+        fontSize: '14px',
+        fontWeight: 'bold',
+        marginBottom: '-50px',
+        marginTop: '20px',
+        background: '-webkit-linear-gradient(left, #4169E1, #00008B)', // 设置渐变
+        WebkitBackgroundClip: 'text', // 设置文本填充为渐变色
+        WebkitTextFillColor: 'transparent', // 设置字体颜色为透明，以显示渐变背景色
+      }}
+    >
+      TurboAPI 致力于为开发者与企业用户提供安全、可靠、稳定的接口服务!
+    </span>
+  );
   return (
     <div className={containerClassName}>
       <Helmet>
@@ -169,13 +213,14 @@ const Login: React.FC = () => {
         }}
       >
         <LoginForm
+          style={{ margin: -14 }}
           contentStyle={{
             minWidth: 280,
             maxWidth: '75vw',
           }}
-          logo={<img alt="logo" src="/logo.svg" />}
-          title="Ant Design"
-          subTitle={intl.formatMessage({ id: 'pages.layouts.userLayout.title' })}
+          logo={logo}
+          title={title}
+          subTitle={subTitle}
           initialValues={{
             autoLogin: true,
           }}

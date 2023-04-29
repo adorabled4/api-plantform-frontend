@@ -32,7 +32,7 @@ export default [
     path: '/test',
     name: '测试接口展示',
     icon: 'smile',
-    component: './InterfaceTest',
+    component: './Interface/InterfaceTest',
   },
   {
     path: '/admin',

@@ -1,9 +1,8 @@
+import SlideShow from '@/components/DIY/SlideShow/SlideShow';
 import { PageContainer } from '@ant-design/pro-components';
 import { useModel } from '@umijs/max';
-import { Card, theme,message } from 'antd';
+import { Card, theme } from 'antd';
 import React from 'react';
-import {getInterfaceListUsingGET} from "@/services/api-plantform_bankend/interfacekongzhiceng";
-
 /**
  * 每个单独的卡片，为了复用样式抽成了组件
  * @param param0
@@ -98,7 +97,6 @@ const InfoCard: React.FC<{
 //   message.error(error.message)
 // });
 
-
 const Welcome: React.FC = () => {
   const { token } = theme.useToken();
   const { initialState } = useModel('@@initialState');
@@ -130,7 +128,7 @@ const Welcome: React.FC = () => {
               color: token.colorTextHeading,
             }}
           >
-            欢迎使用 Ant Design Pro
+            欢迎使用 TurboAPI
           </div>
           <p
             style={{
@@ -152,7 +150,6 @@ const Welcome: React.FC = () => {
               gap: 16,
             }}
           >
-
             <InfoCard
               index={1}
               href="https://umijs.org/docs/introduce/introduce"
@@ -174,6 +171,7 @@ const Welcome: React.FC = () => {
           </div>
         </div>
       </Card>
+      <SlideShow></SlideShow>
     </PageContainer>
   );
 };
