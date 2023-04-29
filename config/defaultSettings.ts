@@ -1,5 +1,6 @@
 import { ProLayoutProps } from '@ant-design/pro-components';
 
+// @ts-ignore
 /**
  * @name
  */

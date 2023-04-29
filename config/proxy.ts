@@ -15,15 +15,15 @@ export default {
     // localhost:8000/api/** -> https://preview.pro.ant.design/api/**
     '/apicore/': {
       // 要代理的地址
-      target: 'http://localhost:88/',
+      // target: 'http://192.168.159.134:88/',
+      target: 'http://39.105.61.0:88/',
       // 配置了这个可以从 http 代理到 https
       // 依赖 origin 的功能可能需要这个，比如 cookie
       changeOrigin: true,
       secure: false,
-
       //https://stackoverflow.com/questions/71839046/receiving-proxy-error-error-occurred-while-proxying-request-econnrefused-in-r
       headers: {
-        "Connection": "keep-alive"
+        Connection: 'keep-alive',
       },
     },
   },
@@ -35,14 +35,14 @@ export default {
   test: {
     // localhost:8000/api/** -> https://preview.pro.ant.design/api/**
     '/api/': {
-      target: 'https://proapi.azurewebsites.net',
+      target: 'https://39.105.61.0:88',
       changeOrigin: true,
       pathRewrite: { '^': '' },
     },
   },
   pre: {
     '/api/': {
-      target: 'your pre url',
+      target: 'https://39.105.61.0:88',
       changeOrigin: true,
       pathRewrite: { '^': '' },
     },
