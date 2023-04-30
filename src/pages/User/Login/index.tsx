@@ -185,10 +185,14 @@ const Login: React.FC = () => {
         fontSize: '14px',
         fontWeight: 'bold',
         marginBottom: '-50px',
-        marginTop: '20px',
-        background: '-webkit-linear-gradient(left, #4169E1, #00008B)', // 设置渐变
+        marginTop: '40px',
+        background: '-webkit-linear-gradient(left,#6FFF8B, #4169E1 )', // 设置渐变
         WebkitBackgroundClip: 'text', // 设置文本填充为渐变色
         WebkitTextFillColor: 'transparent', // 设置字体颜色为透明，以显示渐变背景色
+        // position: "fixed",
+        // right: '20px',
+        // bottom: '20px',
+        // z-index: '9999',
       }}
     >
       TurboAPI 致力于为开发者与企业用户提供安全、可靠、稳定的接口服务!

@@ -1,3 +1,4 @@
+import { BLOG_LINK, GITHUB_LINK } from '@/constants';
 import { GithubOutlined } from '@ant-design/icons';
 import { DefaultFooter } from '@ant-design/pro-components';
 import { useIntl } from '@umijs/max';
@@ -7,7 +8,7 @@ const Footer: React.FC = () => {
   const intl = useIntl();
   const defaultMessage = intl.formatMessage({
     id: 'app.copyright.produced',
-    defaultMessage: '蚂蚁集团体验技术部出品',
+    defaultMessage: 'TurboAPI',
   });
 
   const currentYear = new Date().getFullYear();
@@ -26,15 +27,19 @@ const Footer: React.FC = () => {
           blankTarget: true,
         },
         {
-          key: 'github',
-          title: <GithubOutlined />,
-          href: 'https://github.com/ant-design/ant-design-pro',
+          key: 'blog',
+          title: "dhx_'blog",
+          href: BLOG_LINK,
           blankTarget: true,
         },
         {
-          key: 'Ant Design',
-          title: 'Ant Design',
-          href: 'https://ant.design',
+          key: 'github',
+          title: (
+            <>
+              <GithubOutlined /> dhx_ GitHub
+            </>
+          ),
+          href: GITHUB_LINK,
           blankTarget: true,
         },
       ]}
