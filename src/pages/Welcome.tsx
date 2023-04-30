@@ -1,8 +1,10 @@
+import SiderTop from '@/components/DIY/SiderTop';
 import SlideShow from '@/components/DIY/SlideShow/SlideShow';
 import { PageContainer } from '@ant-design/pro-components';
 import { useModel } from '@umijs/max';
-import { Card, theme } from 'antd';
-import React from 'react';
+import { Card, Col, Row, theme } from 'antd';
+import React, { useState } from 'react';
+
 /**
  * 每个单独的卡片，为了复用样式抽成了组件
  * @param param0
@@ -18,11 +20,18 @@ const InfoCard: React.FC<{
 
   const { token } = useToken();
 
+  // 定义鼠标悬停时的样式
+  const hoverStyle = {
+    transform: 'translateY(-5px) scale(1.05) rotate(-1deg)',
+    boxShadow: '0px 16px 24px rgba(0, 0, 0, 0.2)',
+  };
+
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
     <div
       style={{
         backgroundColor: token.colorBgContainer,
-        boxShadow: token.boxShadow,
         borderRadius: '8px',
         fontSize: '14px',
         color: token.colorTextSecondary,
@@ -30,7 +39,13 @@ const InfoCard: React.FC<{
         padding: '16px 19px',
         minWidth: '220px',
         flex: 1,
+        transform: 'rotate(-1deg)',
+        boxShadow: '0px 8px 16px rgba(0, 0, 0, 0.1)',
+        transition: 'all 0.3s ease-in-out',
+        ...(isHovered && hoverStyle),
       }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
       <div
         style={{
@@ -44,64 +59,64 @@ const InfoCard: React.FC<{
             width: 48,
             height: 48,
             lineHeight: '22px',
-            backgroundSize: '100%',
-            textAlign: 'center',
-            padding: '8px 16px 16px 12px',
-            color: '#FFF',
-            fontWeight: 'bold',
-            backgroundImage:
-              "url('https://gw.alipayobjects.com/zos/bmw-prod/daaf8d50-8e6d-4251-905d-676a24ddfa12.svg')",
+            borderRadius: '50%',
+            backgroundColor: token.colorBgPrimary,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            fontSize: '24px',
+            fontWeight: 600,
+            boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
           }}
         >
           {index}
         </div>
-        <div
-          style={{
-            fontSize: '16px',
-            color: token.colorText,
-            paddingBottom: 8,
-          }}
-        >
-          {title}
-        </div>
+        <div style={{ fontWeight: 500 }}>{title}</div>
       </div>
+      <div style={{ marginTop: '12px' }}>{desc}</div>
       <div
         style={{
-          fontSize: '14px',
-          color: token.colorTextSecondary,
-          textAlign: 'justify',
-          lineHeight: '22px',
-          marginBottom: 8,
+          marginTop: '12px',
+          display: 'flex',
+          justifyContent: 'flex-end',
         }}
       >
-        {desc}
+        <a
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ color: token.colorTextLink }}
+        >
+          Learn more
+        </a>
       </div>
-      <a href={href} target="_blank" rel="noreferrer">
-        了解更多 {'>'}
-      </a>
     </div>
   );
 };
-
-// const params = {
-//   // 填写请求参数
-//   current:1,
-//   pageSize:6
-// };
-// let data[]
-// getInterfaceListUsingGET(params).then((response) => {
-//   // 处理响应数据
-//    data = response.data;
-// }).catch((error:API.BaseResponse) => {
-//   // 处理错误
-//   message.error(error.message)
-// });
 
 const Welcome: React.FC = () => {
   const { token } = theme.useToken();
   const { initialState } = useModel('@@initialState');
   return (
-    <PageContainer>
+    //  padding 调整页面 两边的间距
+    <PageContainer style={{ padding: '0 128px' }}>
+      <div>
+        <Row gutter={0}>
+          <Col span={16}>
+            <div style={{ height: '65vh', marginRight: '-200px' }}>
+              <SlideShow />
+              {/*  幻灯片 */}
+            </div>
+          </Col>
+          <Col span={8}>
+            <div style={{ height: '60vh', marginLeft: '-28px' }}>
+              <SiderTop />
+              {/*  接口调用榜单 */}
+            </div>
+          </Col>
+        </Row>
+      </div>
+      <div></div>
       <Card
         style={{
           borderRadius: 8,
@@ -171,7 +186,6 @@ const Welcome: React.FC = () => {
           </div>
         </div>
       </Card>
-      <SlideShow></SlideShow>
     </PageContainer>
   );
 };
