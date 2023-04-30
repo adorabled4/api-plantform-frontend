@@ -30,6 +30,21 @@ export async function getInterfaceExampleUsingGET(
   });
 }
 
+/** invokeInterfaceOL POST /apicore/interface/invoke */
+export async function invokeInterfaceOLUsingPOST(
+  body: API.InterfaceInfoRequest,
+  options?: { [key: string]: any },
+) {
+  return request<Record<string, any>>('/apicore/interface/invoke', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  });
+}
+
 /** getInterfaceList GET /apicore/interface/list */
 export async function getInterfaceListUsingGET(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)

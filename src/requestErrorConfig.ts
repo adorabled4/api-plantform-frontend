@@ -98,6 +98,7 @@ export const errorConfig: RequestConfig = {
       config.headers={
         ...config.headers,
         Authorization: localStorage.getItem("accessToken") || '',
+        apiplatform: new Date().toISOString(),
       }
       return { ...config };
     },

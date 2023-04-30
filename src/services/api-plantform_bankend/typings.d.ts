@@ -34,6 +34,13 @@ declare namespace API {
     message?: string;
   };
 
+  type BaseResponseString_ = {
+    code?: number;
+    data?: string;
+    description?: string;
+    message?: string;
+  };
+
   type BaseResponseUserDTO_ = {
     code?: number;
     data?: UserDTO;
@@ -44,6 +51,13 @@ declare namespace API {
   type BaseResponseUserVo_ = {
     code?: number;
     data?: UserVo;
+    description?: string;
+    message?: string;
+  };
+
+  type BaseResponseWeatherInfo_ = {
+    code?: number;
+    data?: WeatherInfo;
     description?: string;
     message?: string;
   };
@@ -90,8 +104,23 @@ declare namespace API {
     method?: string;
     name?: string;
     url?: string;
+    tag:string;
     userName?: string;
   };
+  /*
+
+  type InterfaceBasicInfoVo = {
+    createTime?: string;
+    description?: string;
+    id?: number;
+    isFree?: number;
+    method?: string;
+    name?: string;
+    url?: string;
+    icon?:string // url
+    userName?: string;
+  };
+   */
 
   type InterfaceExampleEntity = {
     callExample?: string;
@@ -101,6 +130,36 @@ declare namespace API {
     isDelete?: number;
     returnExample?: string;
     updateTime?: string;
+  };
+
+  type InterfaceInfoRequest = {
+    interfaceId?: number;
+    params?: Record<string, any>;
+  };
+
+  type ipTestUsingDELETEParams = {
+    /** ip */
+    ip?: string;
+  };
+
+  type ipTestUsingGETParams = {
+    /** ip */
+    ip?: string;
+  };
+
+  type ipTestUsingPATCHParams = {
+    /** ip */
+    ip?: string;
+  };
+
+  type ipTestUsingPOSTParams = {
+    /** ip */
+    ip?: string;
+  };
+
+  type ipTestUsingPUTParams = {
+    /** ip */
+    ip?: string;
   };
 
   type LoginParam = {
@@ -130,5 +189,44 @@ declare namespace API {
     userAccount?: string;
     userId?: number;
     userName?: string;
+  };
+
+  type WeatherInfo = {
+    adcode?: string;
+    city?: string;
+    humidity?: string;
+    humidity_float?: number;
+    province?: string;
+    reporttime?: string;
+    temperature?: string;
+    temperature_float?: number;
+    weather?: string;
+    winddirection?: string;
+    windpower?: string;
+  };
+
+  type weatherTestUsingDELETEParams = {
+    /** cityName */
+    cityName?: string;
+  };
+
+  type weatherTestUsingGETParams = {
+    /** cityName */
+    cityName?: string;
+  };
+
+  type weatherTestUsingPATCHParams = {
+    /** cityName */
+    cityName?: string;
+  };
+
+  type weatherTestUsingPOSTParams = {
+    /** cityName */
+    cityName?: string;
+  };
+
+  type weatherTestUsingPUTParams = {
+    /** cityName */
+    cityName?: string;
   };
 }
