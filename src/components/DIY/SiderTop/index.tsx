@@ -1,8 +1,9 @@
 import {ProList} from '@ant-design/pro-components';
-import {Avatar, Tag} from 'antd';
+import {Avatar, Button, Tag} from 'antd';
 import {getRankInterfacesUsingGET} from "@/services/api-plantform_bankend/interfacekongzhiceng";
-import {ReactText, useEffect, useState} from "react";
+import React, {ReactText, useEffect, useState} from "react";
 import {UserOutlined} from "@ant-design/icons";
+import {history} from "@@/core/history";
 
 const dataSource = [
   {
@@ -100,6 +101,9 @@ export default function InterfaceRank() {
 
     fetchData();
   }, []);
+  const handleTagClick = (id: number) => {
+    history.push(`/detail/${id}`);
+  };
   return (<div style={{backgroundColor: '#f5f5f5', borderRadius: '100px'}}>
     <ProList<any>
       style={{backgroundColor: '#FFF234', borderRadius: '100px'}}
@@ -132,23 +136,6 @@ export default function InterfaceRank() {
             );
           },
         },
-        // avatar: { // 图片 ， 太小了
-        //   dataIndex: 'background',
-        //   render: (background: string) => {
-        //     return <Avatar shape="square" src={background} size={64} icon={<UserOutlined />} style={{ padding: '4px' }}/>;
-        //   },
-        //   style: { padding: '0' },
-        // },
-
-        // extra: {
-        //   dataIndex: 'background',
-        //   render: (background,record) => {
-        //     return <div>
-        //       <img src={background} width={72} alt="logo"/>
-        //       <div>{record.url}</div>
-        //     </div>;
-        //   },
-        // },
         description: {
           dataIndex: 'description',
           render: (text) => {
@@ -168,16 +155,24 @@ export default function InterfaceRank() {
           },
         },
         actions: {
-          render: (text, row) => [
+          render: (text, record) => [
             // <a href={row.html_url} target="_blank" rel="noopener noreferrer" key="link">
             //   链路
             // </a>,
             // <a href={row.html_url} target="_blank" rel="noopener noreferrer" key="warning">
             //   报警
             // </a>,
-            <a href={row.html_url} target="_blank" rel="noopener noreferrer" key="view">
-              查看
-            </a>,
+            <div style={{
+              backgroundColor: '#a3ddec',
+              display: 'inline-block',
+              padding: '8px 16px',
+              borderRadius: '4px',
+              textDecoration: 'none',
+              color: '#fff',
+              boxShadow: '0 2px 0 rgba(0, 0, 0, 0.045), 0 6px 8px rgba(0, 0, 0, 0.3)'
+            }}>
+              <a color={'#FFFFFF'} onClick={() => handleTagClick(record.id.toString())}>查看</a>
+            </div>
           ],
         },
       }}

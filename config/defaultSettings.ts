@@ -10,8 +10,7 @@ const Settings: ProLayoutProps & {
 } = {
   navTheme: 'light',
   // 拂晓蓝
-  // colorPrimary: 'linear-gradient(to bottom, #d6f0ff, #f8c6c7, #f6e3ba, #4f86f7)',
-  colorPrimary: '#f8c6c7',
+  colorPrimary: '#FF7F50',
   layout: 'top',
   contentWidth: 'Fluid',
   fixedHeader: false,
@@ -20,7 +19,7 @@ const Settings: ProLayoutProps & {
   colorWeak: false,
   title: 'TurboAPI',
   pwa: true,
-  logo: "http://oss.dhx.icu/dhx/image-20230429160829057-removebg-preview-16827558960873.png",
+  logo: 'http://oss.dhx.icu/dhx/image-20230429160829057-removebg-preview-16827558960873.png',
   iconfontUrl: '',
   token: {
     // 参见ts声明，demo 见文档，通过token 修改样式

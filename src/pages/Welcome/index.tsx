@@ -198,7 +198,7 @@ const Index: React.FC = () => {
             textTransform: 'uppercase', // 将文本转换为大写字母，使其更有趣
           }}
         >
-          知识类接口 Question API
+          智能类接口 Question API
         </div>
 
 
@@ -316,7 +316,7 @@ const Index: React.FC = () => {
             textTransform: 'uppercase', // 将文本转换为大写字母，使其更有趣
           }}
         >
-          智能类接口 Intellect API
+          知识类接口 Intellect API
         </div>
         <p
           style={{
@@ -328,7 +328,7 @@ const Index: React.FC = () => {
             width: '65%',
           }}
         >
-          旨在提供各种智能服务和功能，例如情感分析、语音识别、人脸识别、自然语言处理、推荐系统等。这些接口可以帮助开发人员构建智能化应用程序，提供更加智能的体验和服务。
+          旨在提供各种常用知识以及功能，例如名言警句、成语典故、经典对联等。这些接口可以帮助开发人员提供常识性信息，而无需浪费时间查找。
         </p>
         <Row style={{maxWidth: '15000px'}}>
           <Col span={7} style={{marginRight: '16px'}}>
