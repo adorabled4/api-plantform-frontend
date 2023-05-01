@@ -1,36 +1,39 @@
-import { ProList } from '@ant-design/pro-components';
-import { Tag } from 'antd';
+import {ProList} from '@ant-design/pro-components';
+import {Avatar, Tag} from 'antd';
+import {getRankInterfacesUsingGET} from "@/services/api-plantform_bankend/interfacekongzhiceng";
+import {ReactText, useEffect, useState} from "react";
+import {UserOutlined} from "@ant-design/icons";
 
 const dataSource = [
   {
     name: '语雀的天空',
-    image:
+    background:
       'https://gw.alipayobjects.com/zos/antfincdn/efFD%24IOql2/weixintupian_20170331104822.jpg',
-    desc: '我是一条测试的描述',
+    description: '我是一条测试的描述',
   },
   {
     name: 'Ant Design',
-    image:
+    background:
       'https://gw.alipayobjects.com/zos/antfincdn/efFD%24IOql2/weixintupian_20170331104822.jpg',
-    desc: '我是一条测试的描述',
+    description: '我是一条测试的描述',
   },
   {
     name: '蚂蚁金服体验科技',
-    image:
+    background:
       'https://gw.alipayobjects.com/zos/antfincdn/efFD%24IOql2/weixintupian_20170331104822.jpg',
-    desc: '我是一条测试的描述',
+    description: '我是一条测试的描述',
   },
   {
     name: 'TechUI',
-    image:
+    background:
       'https://gw.alipayobjects.com/zos/antfincdn/efFD%24IOql2/weixintupian_20170331104822.jpg',
-    desc: '我是一条测试的描述',
+    description: '我是一条测试的描述',
   },
   {
     name: 'TechUI',
-    image:
+    background:
       'https://gw.alipayobjects.com/zos/antfincdn/efFD%24IOql2/weixintupian_20170331104822.jpg',
-    desc: '我是一条测试的描述',
+    description: '我是一条测试的描述',
   },
 ];
 
@@ -57,7 +60,7 @@ const headerTitle = (
       style={{
         position: 'relative',
         alignItems: 'center',
-        alignContent:'center',
+        alignContent: 'center',
         zIndex: 1,
         // animation, // 在这里使用 animation 变量
       }}
@@ -80,11 +83,26 @@ const headerTitle = (
     ></span>
   </div>
 );
+export default function InterfaceRank() {
+  const [interfaceData, setInterfaceData] = useState([]);
+  const [expandedRowKeys, setExpandedRowKeys] = useState<readonly ReactText[]>([]);
+  useEffect(() => {
+    async function fetchData() {
+      const response = await getRankInterfacesUsingGET();
 
-export default () => (
-  <div style={{ backgroundColor: '#f5f5f5' ,borderRadius:'100px'}}>
+      // 将获取到的数据保存到 state 中
+      if (Array.isArray(response.data)) {
+        setInterfaceData(response.data);
+      } else {
+        setInterfaceData([]);
+      }
+    }
+
+    fetchData();
+  }, []);
+  return (<div style={{backgroundColor: '#f5f5f5', borderRadius: '100px'}}>
     <ProList<any>
-      style={{ backgroundColor: '#FFF234' ,borderRadius:'100px'}}
+      style={{backgroundColor: '#FFF234', borderRadius: '100px'}}
       onRow={(record: any) => {
         return {
           onMouseEnter: () => {
@@ -98,36 +116,53 @@ export default () => (
       rowKey="name"
       headerTitle={headerTitle}
       // tooltip="实时统计接口调用"
-      dataSource={dataSource}
-      showActions="hover"
+      // expandable={{ expandedRowKeys, onExpandedRowsChange: setExpandedRowKeys }}
+      dataSource={interfaceData}
+      showActions="hover" // 鼠标覆盖
       showExtra="hover"
       metas={{
         title: {
           dataIndex: 'name',
           render: (text, row, index) => {
             return (
-              <div style={{ display: 'flex', alignItems: 'center' }}>
-                <div style={{ marginRight: 10 }}>{index + 1}.</div>
-                <div>{text}</div>
+              <div style={{display: 'flex', alignItems: 'center'}}>
+                <div style={{marginRight: 10}}>{index + 1}.</div>
+                <div>{text} </div>
               </div>
             );
           },
         },
-        avatar: {
-          dataIndex: 'image',
-        },
+        // avatar: { // 图片 ， 太小了
+        //   dataIndex: 'background',
+        //   render: (background: string) => {
+        //     return <Avatar shape="square" src={background} size={64} icon={<UserOutlined />} style={{ padding: '4px' }}/>;
+        //   },
+        //   style: { padding: '0' },
+        // },
+
+        // extra: {
+        //   dataIndex: 'background',
+        //   render: (background,record) => {
+        //     return <div>
+        //       <img src={background} width={72} alt="logo"/>
+        //       <div>{record.url}</div>
+        //     </div>;
+        //   },
+        // },
         description: {
-          dataIndex: 'desc',
+          dataIndex: 'description',
           render: (text) => {
-            return <div style={{ color: '#999' }}>{text}</div>;
+            return <div style={{color: '#999'}}>{text}</div>;
           },
         },
         subTitle: {
-          render: () => {
+          dataIndex: 'callTimes',
+          render: (calltime,record) => {
             return (
-              <div style={{ display: 'flex', alignItems: 'center' }}>
-                <Tag color="blue">Web Design</Tag>
-                {/*<Tag color="#5BD8A6">UI Design</Tag>*/}
+              <div style={{display: 'flex', alignItems: 'center'}}>
+                <Tag color="blue">call:{calltime}次 </Tag>
+                <Tag color="#5BD8A6">{record.method}</Tag>
+                <Tag color={record.isFree ? '#5BD8A6' : '#FFC107'}>{record.isFree ? '免费' : '付费'}</Tag>
               </div>
             );
           },
@@ -147,5 +182,5 @@ export default () => (
         },
       }}
     />
-  </div>
-);
+  </div>)
+}

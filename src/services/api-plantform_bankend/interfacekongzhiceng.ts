@@ -8,8 +8,12 @@ export async function getInterfaceDetailUsingGET(
   params: API.getInterfaceDetailUsingGETParams,
   options?: { [key: string]: any },
 ) {
-  const { id: param0, ...queryParams } = params;
-  return request<API.BaseResponse>(`/apicore/interface/detail/${param0}`, {
+  const { id, ...queryParams } = params;
+  // console.log(id) 解析不出来
+  // 这里不需要解构，  直接使用params 即可， 因为里面只有一个参数
+  // console.log(param0)
+  // console.log(params)
+  return request<API.BaseResponseInterfaceDetailVo_>(`/apicore/interface/detail/${params}`, {
     method: 'GET',
     params: { ...queryParams },
     ...(options || {}),
@@ -35,7 +39,7 @@ export async function invokeInterfaceOLUsingPOST(
   body: API.InterfaceInfoRequest,
   options?: { [key: string]: any },
 ) {
-  return request<Record<string, any>>('/apicore/interface/invoke', {
+  return request<API.BaseResponse>('/apicore/interface/invoke', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -56,6 +60,22 @@ export async function getInterfaceListUsingGET(
     params: {
       ...params,
     },
+    ...(options || {}),
+  });
+}
+
+/** getRankInterfaces GET /apicore/interface/list/rank */
+export async function getRankInterfacesUsingGET(options?: { [key: string]: any }) {
+  return request<API.BaseResponseListInterfaceRankInfoVo_>('/apicore/interface/list/rank', {
+    method: 'GET',
+    ...(options || {}),
+  });
+}
+
+/** getInterfaceByTag GET /apicore/interface/list/tag */
+export async function getInterfaceByTagUsingGET(options?: { [key: string]: any }) {
+  return request<API.BaseResponseListInterfaceTagVo_>('/apicore/interface/list/tag', {
+    method: 'GET',
     ...(options || {}),
   });
 }

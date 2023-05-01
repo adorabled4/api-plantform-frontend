@@ -2,10 +2,10 @@ import SiderTop from '@/components/DIY/SiderTop';
 import SlideShow from '@/components/DIY/SlideShow/SlideShow';
 import {PageContainer} from '@ant-design/pro-components';
 import {useModel} from '@umijs/max';
-import {Button, Card, Col, message, Row, theme} from 'antd';
+import {Button, Card, Col, message, Row, Tag, theme} from 'antd';
 import React, {useEffect, useState} from 'react';
 import {getInterfaceListUsingGET} from "@/services/api-plantform_bankend/interfacekongzhiceng";
-
+import { history } from 'umi';
 /**
  * 每个单独的卡片，为了复用样式抽成了组件
  * @param param0
@@ -23,13 +23,16 @@ const InfoCard: React.FC<InterfaceBasicInfoProps> = ({data}) => {
     transform: 'translateY(-5px) scale(1.05) rotate(-0deg)',
     boxShadow: '0px 16px 24px rgba(0, 0, 0, 0.2)',
   };
+  const handleTagClick = (id: number) => {
+    history.push(`/detail/${id}`);
+  };
   const [isHovered, setIsHovered] = useState(false);
   return (
     <div
       style={{
         // backgroundColor: token.colorBgContainer,
         borderRadius: '8px',
-        minHeight:'25vh',
+        minHeight: '25vh',
         fontSize: '14px',
         color: token.colorTextSecondary,
         lineHeight: '22px',
@@ -69,7 +72,11 @@ const InfoCard: React.FC<InterfaceBasicInfoProps> = ({data}) => {
           {id}
         </div>
         <div style={{fontWeight: 500}}>{name}</div>
+        <Tag color={isFree ? '#5BD8A6' : '#FFC107'}>{isFree ? '免费' : '付费'}</Tag>
+        <Tag  color={method == "GET" ? '#1E90FF' : '#00FF7F'}>{method}</Tag>
+
       </div>
+
       <div style={{marginTop: '12px'}}>{description}</div>
       <div
         style={{
@@ -78,14 +85,17 @@ const InfoCard: React.FC<InterfaceBasicInfoProps> = ({data}) => {
           justifyContent: 'flex-end',
         }}
       >
-        <a
-          href={id}
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{color: token.colorTextLink}}
-        >
-          Learn more
-        </a>
+        {/*<a*/}
+        {/*  href={id}*/}
+        {/*  target="_blank"*/}
+        {/*  rel="noopener noreferrer"*/}
+        {/*  style={{color: token.colorTextLink}}*/}
+        {/*>*/}
+        {/*  Learn more*/}
+        {/*</a>*/}
+        <div>
+          <Tag color={'#a3cdec'} onClick={() => handleTagClick(id.toString())}>Learn More</Tag>
+        </div>
       </div>
     </div>
   );
@@ -137,7 +147,7 @@ const Index: React.FC = () => {
         border: '3px solid #E6E6FA',
       }}>
         <h2 style={{marginBottom: '16px'}}>欢迎使用TurboAPI!</h2>
-        <p style={{fontSize: '18px', lineHeight: '1.5',alignContent:'left',backgroundColor:'a2d5f2'}}>
+        <p style={{fontSize: '18px', lineHeight: '1.5', alignContent: 'left', backgroundColor: 'a2d5f2'}}>
           「TurboAPI」是一款高效、可靠和安全的接口开放平台后端，为广大用户提供高质量、可靠、安全的接口服务，帮助用户轻松实现各种功能和数据交互，提高工作效率和用户体验。我们致力于通过高端的技术和优质的服务，为您的业务发展提供坚实的支持和保障。无论您是企业用户还是个人用户，「TurboAPI」都能为您提供最佳的接口解决方案。
         </p>
       </div>
@@ -186,7 +196,7 @@ const Index: React.FC = () => {
             textShadow: '1px 1px 2px rgba(0, 0, 0, 0.3)', // 添加文本阴影效果，使其更有趣
             letterSpacing: '4px', // 添加更大的字母间距，使其更有趣
             textTransform: 'uppercase', // 将文本转换为大写字母，使其更有趣
-            }}
+          }}
         >
           知识类接口 Question API
         </div>

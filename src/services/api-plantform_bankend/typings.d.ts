@@ -13,6 +13,13 @@ declare namespace API {
     message?: string;
   };
 
+  type BaseResponseInterfaceDetailVo_ = {
+    code?: number;
+    data?: InterfaceDetailVo;
+    description?: string;
+    message?: string;
+  };
+
   type BaseResponseInterfaceExampleEntity_ = {
     code?: number;
     data?: InterfaceExampleEntity;
@@ -23,6 +30,20 @@ declare namespace API {
   type BaseResponseListInterfaceBasicInfoVo_ = {
     code?: number;
     data?: InterfaceBasicInfoVo[];
+    description?: string;
+    message?: string;
+  };
+
+  type BaseResponseListInterfaceRankInfoVo_ = {
+    code?: number;
+    data?: InterfaceRankInfoVo[];
+    description?: string;
+    message?: string;
+  };
+
+  type BaseResponseListInterfaceTagVo_ = {
+    code?: number;
+    data?: InterfaceTagVo[];
     description?: string;
     message?: string;
   };
@@ -97,30 +118,35 @@ declare namespace API {
   };
 
   type InterfaceBasicInfoVo = {
+    background?: string;
+    callTimes?: number;
     createTime?: string;
     description?: string;
     id?: number;
     isFree?: number;
     method?: string;
     name?: string;
+    tag?: string;
     url?: string;
-    tag:string;
     userName?: string;
   };
-  /*
 
-  type InterfaceBasicInfoVo = {
+  type InterfaceDetailVo = {
+    background?: string;
+    callTimes?: number;
     createTime?: string;
     description?: string;
     id?: number;
     isFree?: number;
     method?: string;
     name?: string;
+    requestHeader?: string;
+    requestParam?: string;
+    responseHeader?: string;
+    tag?: string;
     url?: string;
-    icon?:string // url
     userName?: string;
   };
-   */
 
   type InterfaceExampleEntity = {
     callExample?: string;
@@ -135,6 +161,23 @@ declare namespace API {
   type InterfaceInfoRequest = {
     interfaceId?: number;
     params?: Record<string, any>;
+  };
+
+  type InterfaceRankInfoVo = {
+    background?: string;
+    callTimes?: number;
+    description?: string;
+    id?: number;
+    isFree?: number;
+    method?: string;
+    name?: string;
+    tag?: string;
+    url?: string;
+  };
+
+  type InterfaceTagVo = {
+    interfaceBasicInfoVos?: InterfaceBasicInfoVo[];
+    tag?: string;
   };
 
   type ipTestUsingDELETEParams = {

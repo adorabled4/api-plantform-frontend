@@ -18,7 +18,7 @@ const genList = (current: number, pageSize: number) => {
       ][i % 2],
       name: `TradeCode ${index}`,
       owner: '曲丽丽',
-      desc: '这是一段描述',
+      description: '这是一段描述',
       callNo: Math.floor(Math.random() * 1000),
       status: Math.floor(Math.random() * 10) % 4,
       updatedAt: moment().format('YYYY-MM-DD'),
@@ -131,7 +131,7 @@ function postRule(req: Request, res: Response, u: string, b: Request) {
           ][i % 2],
           name,
           owner: '曲丽丽',
-          desc,
+          desc: description,
           callNo: Math.floor(Math.random() * 1000),
           status: Math.floor(Math.random() * 10) % 2,
           updatedAt: moment().format('YYYY-MM-DD'),
@@ -148,8 +148,8 @@ function postRule(req: Request, res: Response, u: string, b: Request) {
         let newRule = {};
         tableListDataSource = tableListDataSource.map((item) => {
           if (item.key === key) {
-            newRule = { ...item, desc, name };
-            return { ...item, desc, name };
+            newRule = { ...item, desc: description, name };
+            return { ...item, desc: description, name };
           }
           return item;
         });

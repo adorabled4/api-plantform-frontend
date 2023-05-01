@@ -20,7 +20,7 @@ const Settings: ProLayoutProps & {
   colorWeak: false,
   title: 'TurboAPI',
   pwa: true,
-  logo: 'http://oss.dhx.icu/dhx/image-20230428152350863.png',
+  logo: "http://oss.dhx.icu/dhx/image-20230429160829057-removebg-preview-16827558960873.png",
   iconfontUrl: '',
   token: {
     // 参见ts声明，demo 见文档，通过token 修改样式

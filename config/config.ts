@@ -144,7 +144,7 @@ export default defineConfig({
     // },
     {
       requestLibPath: "import { request } from '@umijs/max'",
-      schemaPath: 'http://localhost:88/apicore/v2/api-docs?group=%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83',
+      schemaPath: 'http://39.105.61.0:88/apicore//v2/api-docs?group=%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83',
       projectName: 'api-plantform_bankend',
     },
   ],

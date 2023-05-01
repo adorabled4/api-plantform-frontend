@@ -1,5 +1,6 @@
 export default {
   'menu.welcome': ' ',
+  'menu.Detail':'',
   'menu.more-blocks': '更多区块',
   'menu.home': '首页',
   'menu.admin': '管理页',

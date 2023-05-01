@@ -31,6 +31,12 @@ export default [
     component: './Welcome',
   },
   {
+    path: '/detail/:id',
+    name: 'Detail',
+    hideInMenu: true,
+    component: '@/pages/Detail',
+  },
+  {
     path: '/admin',
     name: 'admin',
     icon: 'crown',
