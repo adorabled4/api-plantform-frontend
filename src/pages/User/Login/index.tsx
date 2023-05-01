@@ -419,7 +419,7 @@ const Login: React.FC = () => {
           </div>
         </LoginForm>
       </div>
-      <Footer />
+      <Footer backgroundColor={"rgba(0, 0, 0, 0)"}/>
     </div>
   );
 };

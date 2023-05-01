@@ -10,7 +10,8 @@ const Settings: ProLayoutProps & {
 } = {
   navTheme: 'light',
   // 拂晓蓝
-  colorPrimary: '#FF7F50',
+  // colorPrimary: 'linear-gradient(to bottom, #d6f0ff, #f8c6c7, #f6e3ba, #4f86f7)',
+  colorPrimary: '#f8c6c7',
   layout: 'top',
   contentWidth: 'Fluid',
   fixedHeader: false,

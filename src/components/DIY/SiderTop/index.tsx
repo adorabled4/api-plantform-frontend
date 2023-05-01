@@ -37,16 +37,18 @@ const dataSource = [
 const headerTitle = (
   <div
     style={{
+      height: '50px',
+      width: '435px',
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      fontSize: '24px',
+      fontSize: '20px',
       fontFamily: 'sans-serif',
       fontWeight: 'bold',
-      padding: '10px',
-      borderRadius: '5px',
+      padding: '1px',
+      borderRadius: '10px',
       background: 'linear-gradient(to right, #ff416c, #ff4b2b, #ff416c)',
-      color: '#fff',
+      color: '#FFFFFF',
       position: 'relative',
       overflow: 'hidden',
     }}
@@ -54,6 +56,8 @@ const headerTitle = (
     <span
       style={{
         position: 'relative',
+        alignItems: 'center',
+        alignContent:'center',
         zIndex: 1,
         // animation, // 在这里使用 animation 变量
       }}
@@ -62,13 +66,14 @@ const headerTitle = (
     </span>
     <span
       style={{
+        // position: 'absolute',
         position: 'absolute',
         zIndex: 0,
         top: 0,
         left: 0,
         width: '100%',
         height: '100%',
-        background: 'linear-gradient(to right, #00bfff, #1e90ff)',
+        background: 'linear-gradient(to right, #00bBBB, #100Fff)', // 调节背景渐变
         // animation, // 在这里使用 animation 变量
         opacity: 0.7,
       }}
@@ -77,9 +82,9 @@ const headerTitle = (
 );
 
 export default () => (
-  <div style={{ backgroundColor: '#f5f5f5' }}>
+  <div style={{ backgroundColor: '#f5f5f5' ,borderRadius:'100px'}}>
     <ProList<any>
-      style={{ backgroundColor: '#FFF234' }}
+      style={{ backgroundColor: '#FFF234' ,borderRadius:'100px'}}
       onRow={(record: any) => {
         return {
           onMouseEnter: () => {
@@ -122,7 +127,7 @@ export default () => (
             return (
               <div style={{ display: 'flex', alignItems: 'center' }}>
                 <Tag color="blue">Web Design</Tag>
-                <Tag color="#5BD8A6">UI Design</Tag>
+                {/*<Tag color="#5BD8A6">UI Design</Tag>*/}
               </div>
             );
           },

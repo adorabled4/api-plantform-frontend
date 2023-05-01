@@ -4,6 +4,8 @@ import React from 'react';
 
 export type SiderTheme = 'light' | 'dark';
 
+
+// 这个是 国际化 语言
 export const SelectLang = () => {
   return (
     <UmiSelectLang
@@ -14,6 +16,7 @@ export const SelectLang = () => {
   );
 };
 
+// header的问号
 export const Question = () => {
   return (
     <div

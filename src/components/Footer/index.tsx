@@ -4,7 +4,11 @@ import { DefaultFooter } from '@ant-design/pro-components';
 import { useIntl } from '@umijs/max';
 import React from 'react';
 
-const Footer: React.FC = () => {
+interface FooterProps {
+  backgroundColor?: string;
+}
+
+const Footer: React.FC<FooterProps> = ({ backgroundColor }) => {
   const intl = useIntl();
   const defaultMessage = intl.formatMessage({
     id: 'app.copyright.produced',
@@ -16,7 +20,8 @@ const Footer: React.FC = () => {
   return (
     <DefaultFooter
       style={{
-        background: 'none',
+        // background: 'none',
+        background: backgroundColor??'#a2d5f2',
       }}
       copyright={`${currentYear} ${defaultMessage}`}
       links={[

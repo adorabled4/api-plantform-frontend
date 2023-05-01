@@ -2,7 +2,7 @@ import { Carousel } from 'antd';
 
 const imgStyle = {
   width: '100%',
-  height: '57vh',
+  height: '62vh',
   // height: 'auto',
   borderRadius: '10px', // 设置圆角半径
 };
