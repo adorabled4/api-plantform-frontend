@@ -36,10 +36,14 @@ export const errorConfig: RequestConfig = {
     errorThrower: (res) => {
       const {message, data, code, description, showType} =
         res as unknown as ResponseStructure;
-      if (message === 'error') {
+      if (message === 'error' || code!=200) {
         const error: any = new Error(description);
         error.name = 'BizError';
-        error.info = {code: code, description: description, showType, data};
+        if(description){
+          error.info = {code: code, description: description, showType, data};
+        }else{
+          error.info = {code: code, description: "服务器内部异常", showType, data};
+        }
         throw error; // 抛出自制的错误
       }
     },

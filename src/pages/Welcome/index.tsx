@@ -2,10 +2,10 @@ import SiderTop from '@/components/DIY/SiderTop';
 import SlideShow from '@/components/DIY/SlideShow/SlideShow';
 import {PageContainer} from '@ant-design/pro-components';
 import {useModel} from '@umijs/max';
-import {Button, Card, Col, message, Row, Tag, theme} from 'antd';
+import {Button, Card, Col, message, Row, Tag, theme, Tooltip} from 'antd';
 import React, {useEffect, useState} from 'react';
 import {getInterfaceListUsingGET} from "@/services/api-plantform_bankend/interfacekongzhiceng";
-import { history } from 'umi';
+import {history} from 'umi';
 /**
  * 每个单独的卡片，为了复用样式抽成了组件
  * @param param0
@@ -73,7 +73,7 @@ const InfoCard: React.FC<InterfaceBasicInfoProps> = ({data}) => {
         </div>
         <div style={{fontWeight: 500}}>{name}</div>
         <Tag color={isFree ? '#5BD8A6' : '#FFC107'}>{isFree ? '免费' : '付费'}</Tag>
-        <Tag  color={method == "GET" ? '#1E90FF' : '#00FF7F'}>{method}</Tag>
+        <Tag color={method == "GET" ? '#1E90FF' : '#00FF7F'}>{method}</Tag>
 
       </div>
 
@@ -94,7 +94,9 @@ const InfoCard: React.FC<InterfaceBasicInfoProps> = ({data}) => {
         {/*  Learn more*/}
         {/*</a>*/}
         <div>
-          <Tag color={'#a3cdec'} onClick={() => handleTagClick(id.toString())}>Learn More</Tag>
+          <Tooltip title="Click to learn more">
+            <Tag color={'#a3cdec'} onClick={() => handleTagClick(id.toString())} style={{ cursor: 'pointer' }} >Learn More</Tag>
+          </Tooltip>
         </div>
       </div>
     </div>

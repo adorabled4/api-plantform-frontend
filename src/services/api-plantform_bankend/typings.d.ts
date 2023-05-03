@@ -231,6 +231,8 @@ declare namespace API {
     phone?: string;
     userAccount?: string;
     userId?: number;
+    accessKey:string;
+    secretKey:string;
     userName?: string;
   };
 

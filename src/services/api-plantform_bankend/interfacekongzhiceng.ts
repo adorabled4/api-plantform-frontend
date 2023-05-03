@@ -1,6 +1,6 @@
 // @ts-ignore
 /* eslint-disable */
-import { request } from '@umijs/max';
+import {request} from '@umijs/max';
 
 /** getInterfaceDetail GET /apicore/interface/detail/${param0} */
 export async function getInterfaceDetailUsingGET(
@@ -8,14 +8,14 @@ export async function getInterfaceDetailUsingGET(
   params: API.getInterfaceDetailUsingGETParams,
   options?: { [key: string]: any },
 ) {
-  const { id, ...queryParams } = params;
+  const {id, ...queryParams} = params;
   // console.log(id) 解析不出来
   // 这里不需要解构，  直接使用params 即可， 因为里面只有一个参数
   // console.log(param0)
   // console.log(params)
   return request<API.BaseResponseInterfaceDetailVo_>(`/apicore/interface/detail/${params}`, {
     method: 'GET',
-    params: { ...queryParams },
+    params: {...queryParams},
     ...(options || {}),
   });
 }
@@ -26,10 +26,10 @@ export async function getInterfaceExampleUsingGET(
   params: API.getInterfaceExampleUsingGETParams,
   options?: { [key: string]: any },
 ) {
-  const { id: param0, ...queryParams } = params;
+  const {id: param0, ...queryParams} = params;
   return request<API.BaseResponseInterfaceExampleEntity_>(`/apicore/interface/example/${param0}`, {
     method: 'GET',
-    params: { ...queryParams },
+    params: {...queryParams},
     ...(options || {}),
   });
 }
@@ -42,7 +42,8 @@ export async function invokeInterfaceOLUsingPOST(
   return request<API.BaseResponse>('/apicore/interface/invoke', {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json',
+      // 'Content-Type': 'application/json',
+      // 'Content-Type': "application/x-www-form-urlencoded"
     },
     data: body,
     ...(options || {}),

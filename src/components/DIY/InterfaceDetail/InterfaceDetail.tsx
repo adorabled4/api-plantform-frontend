@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
-import {Card, Col, Descriptions, Modal, Row, Tag} from 'antd';
-import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter';
+import React, {useEffect, useState} from 'react';
+import {Card, Col, Descriptions, message, Modal, Row, Tag} from 'antd';
 import {atomDark} from 'react-syntax-highlighter/dist/esm/styles/prism';
-import jsonFormat from 'json-format';
+import ReactJson from 'react-json-view'
+
 interface Props {
   detail: API.InterfaceDetailVo;
 }
@@ -14,9 +14,17 @@ const InterfaceDetail: React.FC<Props> = ({detail}) => {
   const handleImageClick = () => {
     setModalVisible(true);
   };
+  let {requestHeader, requestParam, responseHeader} = detail;
+  try {
+    requestHeader = JSON.parse(detail.requestHeader as string)
+    responseHeader = JSON.parse(detail.responseHeader as string)
+    requestParam = JSON.parse(detail.requestParam as string)
+  } catch (error) {
+    // message.error("服务器内部异常")
+  }
 
   return (
-    <Card title={detail.name}>
+    <Card title={detail.name} >
       <Row gutter={16} justify="center" align="middle">
         <Col xs={24} sm={24} md={10} lg={8} xl={6}>
           <div style={{textAlign: 'center'}}>
@@ -42,26 +50,20 @@ const InterfaceDetail: React.FC<Props> = ({detail}) => {
             <Descriptions.Item label="接口地址">{detail.url}</Descriptions.Item>
             <Descriptions.Item label="请求方法"><Tag
               color={detail.method == "GET" ? '#1E90FF' : '#00FF7F'}>{detail.method}</Tag> </Descriptions.Item>
-            <Descriptions.Item label="分类">{detail.tag}</Descriptions.Item>
-            <Descriptions.Item label="Is Free">
+            <Descriptions.Item label="接口分类">{detail.tag}</Descriptions.Item>
+            <Descriptions.Item label="是否免费">
               <Tag color={detail.isFree ? '#5BD8A6' : '#FFC107'}>{detail.isFree ? '免费' : '付费'}</Tag>
             </Descriptions.Item>
             <Descriptions.Item label="发布者">{detail.userName}</Descriptions.Item>
             <Descriptions.Item label="请求头">
-              <SyntaxHighlighter language="json" style={atomDark}>
-                {JSON.stringify(detail.requestHeader, null, 4)}
-              </SyntaxHighlighter>
+              <ReactJson language={'json'} style={atomDark} name={'请求头'} src={requestHeader}/>
             </Descriptions.Item>
             <Descriptions.Item label="请求参数">
-              <SyntaxHighlighter language="json" style={atomDark}>
-                {JSON.stringify(detail.requestParam, null, 4)}
-              </SyntaxHighlighter>
+              <ReactJson language="json" style={atomDark} name={'请求参数'} src={requestParam}/>
             </Descriptions.Item>
             <Descriptions.Item label="响应头">
-              <SyntaxHighlighter language="json" style={atomDark}>
-                {JSON.stringify(detail.responseHeader, null, 4)}
-              </SyntaxHighlighter
-              ></Descriptions.Item>
+              <ReactJson language="json" style={atomDark} name={'响应头'} src={responseHeader}/>
+            </Descriptions.Item>
           </Descriptions>
         </Col>
       </Row>
