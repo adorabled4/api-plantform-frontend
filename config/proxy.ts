@@ -16,7 +16,7 @@ export default {
     '/apicore/': {
       // 要代理的地址
       // target: 'http://192.168.159.134:88/',
-      target: 'http://39.105.61.0:88/',
+      target: 'http://localhost:88/',
       // 配置了这个可以从 http 代理到 https
       // 依赖 origin 的功能可能需要这个，比如 cookie
       changeOrigin: true,
